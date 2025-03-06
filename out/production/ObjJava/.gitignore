@@ -3,7 +3,3 @@
 *.xml
 *.idea
 *.gitattributes
-
-
-#ignore compilation files
-*.class
