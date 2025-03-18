@@ -1,4 +1,4 @@
-public class VectorialObject {
+    public class VectorialObject {
     private static int idCounter = 0;
     private final int id;
     private double x, y;
@@ -14,11 +14,11 @@ public class VectorialObject {
 
     public VectorialObject(double x, double y, double rotation, double lineWidth, String color) {
         this.id = ++idCounter;
-        this.x = x;
-        this.y = y;
-        this.rotation = rotation;
-        this.lineWidth = lineWidth;
-        this.color = color;
+        setX(x);
+        setY(y);
+        setRotation(rotation);
+        setLineWidth(lineWidth);
+        setColor(color);
     }
 
     // setters and getters
@@ -57,6 +57,7 @@ public class VectorialObject {
     public void println() {
         System.out.println("VectorObject[id=" + id + ", x=" + x + ", y=" + y + ", posukis=" + rotation + ", linijos-plotis=" + lineWidth + ", spalva=" + color + "]");
     }
+    
 
     // Lokalus testavimas
 
