@@ -28,24 +28,24 @@ public class VectorialObject {
     // setters and getters
     public static void setBaseColor(String color){ baseColor = color; }
 
-    public int getId() { return id; }
+    public final int getId() { return id; }
 
-    public double getX() { return x; }
+    public final double getX() { return x; }
     public void setX(double x) { this.x = x; }
 
-    public double getY() { return y; }
+    public final double getY() { return y; }
     public void setY(double y) { this.y = y; }
 
-    public double getRotation() { return rotation; }
+    public final double getRotation() { return rotation; }
     public void setRotation(double rotation) { this.rotation = rotation; }
 
-    public double getLineWidth() { return lineWidth; }
+    public final double getLineWidth() { return lineWidth; }
     public void setLineWidth(double lineWidth) { this.lineWidth = lineWidth; }
 
-    public String getLineColor() {return lineColor; }
+    public final String getLineColor() {return lineColor; }
     public void setLineColor(String lineColor) {this.lineColor = lineColor; }
 
-    public String getColor() { return color; }
+    public final String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
 
     public void transform(double x, double y) {
