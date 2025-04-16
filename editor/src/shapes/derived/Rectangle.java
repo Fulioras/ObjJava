@@ -5,28 +5,45 @@ import shapes.base.*;
 public class Rectangle extends VectorialObject{
 private double width;
 private double height;
-private double rx;
-private double ry;
-
+private double rx = 0;
+private double ry = 0;
 
 public Rectangle(){
-	setWidth(10);
-	setHeight(10);
-	setRX(0);
-	setRY(0);
+	this(0, 0, 0, VectorialObject.getBaseColor());
 }
 
-public void setWidth(double width){ this.width = width; }
+public Rectangle(double x, double y, double lineWidth, String color){
+    super(x, y, lineWidth, color);
+    setWidth(10);
+	setHeight(10);
+}
+
+public final void setWidth(double width){ this.width = width; }
 public double getWidth(){ return this.width; }
 
-public void setHeight(double height){ this.height = height; }
+public final void setHeight(double height){ this.height = height; }
 public double getHeight(){ return this.height; }
 
-public void setRX(double rx){ this.rx = rx; }
+public final void setRX(double rx){ this.rx = rx; }
 public double getRX(){ return this.rx; }
 
-public void setRY(double ry){ this.ry = ry; }
+public final void setRY(double ry){ this.ry = ry; }
 public double getRy(){ return this.ry; }
+
+public double getCenterX(){
+	return super.getX()+(getWidth()/2);
+}
+public double getCenterY(){
+	return super.getY()+(getHeight()/2);
+}
+
+public double getArea(){
+	return getWidth() * getHeight() * super.getScale();
+}
+
+public double getPerimeter(){
+	return 2 * (getWidth() + getHeight()) * super.getScale();
+}
 
 public String toString(){
 
@@ -43,6 +60,11 @@ public String toString(){
  	}
  	if(getRy() != 0 ){
  		svg.append("ry = \"").append(String.valueOf(getRy())).append("\" ");
+ 	}
+ 	if(super.getRotation() != 0){
+ 		svg.append("transform=\"rotate(").append(String.valueOf(super.getRotation()));
+ 		svg.append(" ").append(String.valueOf(getCenterX()));
+ 		svg.append(" ").append(String.valueOf(getCenterY())).append(")\" ");
  	}
 
  	svg.append("/>");

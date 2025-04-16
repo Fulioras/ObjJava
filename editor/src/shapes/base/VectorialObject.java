@@ -1,10 +1,11 @@
-package shapes.base;    
+package shapes.base;  
 
-public class VectorialObject {
+import shapes.abstractShapes.*;  
+
+public class VectorialObject extends AbstractShape {
     private static int idCounter = 0;
     private final int id;
-    private double x, y;
-    private double rotation;
+
     private double lineWidth;
     private String lineColor;
     private String color;
@@ -12,32 +13,30 @@ public class VectorialObject {
 
     // this() panaudojimas
     public VectorialObject() {
-        this(0, 0, 0, 0, baseColor, baseColor); // Iskviecia standartizuota konstruktoriu
+        this(0, 0, 0, baseColor); // Iskviecia standartizuota konstruktoriu
     }
 
-    public VectorialObject(double x, double y, double rotation, double lineWidth, String lineColor, String color) {
+    public VectorialObject(double x, double y, double lineWidth, String color) {
+        super(x, y);
         this.id = ++idCounter;
-        setX(x);
-        setY(y);
-        setRotation(rotation);
         setLineWidth(lineWidth);
-        setLineColor(baseColor);
+        setLineColor(color);
         setColor(color);
     }
 
     // setters and getters
-    public static void setBaseColor(String color){ baseColor = color; }
-
     public final int getId() { return id; }
 
-    public final double getX() { return x; }
-    public void setX(double x) { this.x = x; }
+    public static void setBaseColor(String color){ baseColor = color; }
+    public static final String getBaseColor() {return baseColor; }
 
-    public final double getY() { return y; }
-    public void setY(double y) { this.y = y; }
+    public final double getX() { return super.x; }
 
-    public final double getRotation() { return rotation; }
-    public void setRotation(double rotation) { this.rotation = rotation; }
+    public final double getY() { return super.y; }
+
+    public final double getRotation() { return super.rotation; }
+
+    public final double getScale() { return super.scale; }
 
     public final double getLineWidth() { return lineWidth; }
     public void setLineWidth(double lineWidth) { this.lineWidth = lineWidth; }
@@ -48,16 +47,22 @@ public class VectorialObject {
     public final String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
 
-    public void transform(double x, double y) {
-        this.x = x;
-        this.y = y;
+    
+    public double getCenterX(){
+        return getX();
+    }
+    public double getCenterY(){
+        return getY();
     }
 
-    public void transform(double x, double y, double rotation) {
-        this.x = x;
-        this.y = y;
-        this.rotation = rotation;
+    public double getArea(){
+        return 0;
     }
+
+    public double getPerimeter(){
+        return 0;
+    }
+
 
     public String toString() {
         StringBuilder svg = new StringBuilder("");
