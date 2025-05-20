@@ -2,43 +2,44 @@ package test;
 
 import shapes.base.*;
 import shapes.derived.*;
+import shapes.interfaces.*;
+import shapes.exceptions.*;
+import shapes.factories.*;
+
+import java.util.Arrays;
 
 public class Test{
     public static void main(String args[]) {
 
-        VectorialObject c1 = new Circle();
-        c1.moveX(20);
-        c1.moveY(35);
-        c1.setLineWidth(5);
-        c1.setLineColor("Blue");
-        c1.setColor("Green");
+        try {
+            // 1. Create a Circle using the Factory Method
+            CircleFactory factory = new CircleFactory();
+            Circle original = (Circle) factory.createShape();
 
-        Rectangle r1 = new Rectangle();
-        r1.move(60, 60);
-        r1.rotate(45);
-        r1.setWidth(40);
-        r1.setHeight(40);
-        r1.setColor("red");
-        r1.scale(2);
+            // Set additional attributes
+            original.setRadius(30);
+            original.addTag("marked");
+            original.addTag("colored");
+
+            // 2. Clone the Circle (deep copy)
+            Circle clone = (Circle) original.clone();
+
+            // Modify the clone to prove deep cloning
+            clone.setRadius(60);
+            original.addTag("moved");
+
+            // 3. Print both objects
+            System.out.println("Original Circle:");
+            System.out.println(original);
+            System.out.println(original.getTags());
+
+            System.out.println("\nCloned Circle (Modified):");
+            System.out.println(clone);
+            System.out.println(clone.getTags());
 
 
-        Rectangle r2 = new Rectangle(70, 70, 0, "pink");
-        r2.setWidth(20);
-        r2.setHeight(20);
-        r2.rotate(45);
-
-        VectorialObject v1 = new VectorialObject();
-        System.out.println(v1.getArea());
-
-        System.out.println(c1.toString());
-        System.out.println(c1.getArea() + " " + c1.getPerimeter());
-        
-        System.out.println(r1.toString());
-        System.out.println(r1.getArea() + " " + r1.getPerimeter());
-
-        System.out.println(r2.toString());
-        System.out.println(r2.getArea() + " " + r2.getPerimeter());
+        } catch (BadRadiusValue e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 }
-
-

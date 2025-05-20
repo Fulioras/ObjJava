@@ -1,10 +1,11 @@
 package shapes.derived;
 
 import shapes.base.*;
+import shapes.exceptions.*;
 
 public class Rectangle extends VectorialObject{
-private double width;
-private double height;
+private double width = 10;
+private double height = 10;
 private double rx = 0;
 private double ry = 0;
 
@@ -14,14 +15,19 @@ public Rectangle(){
 
 public Rectangle(double x, double y, double lineWidth, String color){
     super(x, y, lineWidth, color);
-    setWidth(10);
-	setHeight(10);
 }
 
-public final void setWidth(double width){ this.width = width; }
+public final void setWidth(double width) throws EditorException{ 
+	if(width == 0)
+		throw new EditorException("Rectangle width can't be set to zero");
+	this.width = width; 
+}
 public double getWidth(){ return this.width; }
 
-public final void setHeight(double height){ this.height = height; }
+public final void setHeight(double height) throws EditorException{ 
+	if(height == 0)
+		throw new EditorException("Rectangle height can't be set to zero");
+	this.height = height; }
 public double getHeight(){ return this.height; }
 
 public final void setRX(double rx){ this.rx = rx; }
@@ -37,13 +43,21 @@ public double getCenterY(){
 	return super.getY()+(getHeight()/2);
 }
 
-public double getArea(){
+public double getArea() throws EditorException{
+	if(width == 0 || height == 0){
+		throw new EditorException("Zero valued height or width at getArea()");
+	}
 	return getWidth() * getHeight() * super.getScale();
 }
 
-public double getPerimeter(){
+public double getPerimeter() throws EditorException{
+	if(width == 0 || height == 0){
+		throw new EditorException("Zero valued height or width at getPerimeter()");
+	}
 	return 2 * (getWidth() + getHeight()) * super.getScale();
 }
+
+
 
 public String toString(){
 

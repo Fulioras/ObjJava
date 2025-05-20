@@ -2,7 +2,7 @@ package shapes.abstractShapes;
 
 import shapes.interfaces.*;
 
-public abstract class AbstractShape implements Transformable{
+public abstract class AbstractShape implements Transformable, ShapeMath{
 	protected double x,y;
 	protected double rotation = 0.0;
 	protected double scale = 1.0;
@@ -39,7 +39,6 @@ public abstract class AbstractShape implements Transformable{
 		return this.scale;
 	}
 
-	public abstract double getArea();
-	
-	public abstract double getPerimeter();
+	public abstract double getArea() throws Exception;
+	public abstract double getPerimeter() throws Exception;
 }

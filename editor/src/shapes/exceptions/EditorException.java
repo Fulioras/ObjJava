@@ -1,0 +1,7 @@
+package shapes.exceptions;
+
+public class EditorException extends Exception {
+    public EditorException(String message) {
+        super(message);
+    }
+}

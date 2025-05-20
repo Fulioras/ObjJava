@@ -1,6 +1,6 @@
 package shapes.interfaces;
 
 public interface ShapeMath{
-	double getArea();
-	double getPerimeter();
+	double getArea() throws Exception;
+	double getPerimeter() throws Exception;
 }

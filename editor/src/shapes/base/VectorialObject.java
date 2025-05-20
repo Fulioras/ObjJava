@@ -1,8 +1,9 @@
 package shapes.base;  
 
-import shapes.abstractShapes.*;  
+import shapes.abstractShapes.*; 
+import shapes.exceptions.*; 
 
-public class VectorialObject extends AbstractShape {
+public class VectorialObject extends AbstractShape implements Cloneable{
     private static int idCounter = 0;
     private final int id;
 
@@ -55,12 +56,21 @@ public class VectorialObject extends AbstractShape {
         return getY();
     }
 
-    public double getArea(){
-        return 0;
+    @Override
+    public VectorialObject clone() {
+        try {
+            return (VectorialObject) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning failed", e);
+        }
     }
 
-    public double getPerimeter(){
-        return 0;
+    public double getArea() throws EditorException{
+        throw new EditorException("Can't calculate area of VectorialObject(is a point)");
+    }
+
+    public double getPerimeter() throws EditorException{
+        throw new EditorException("Can't calculate perimeter of VectorialObject(is a point)");
     }
 
 
