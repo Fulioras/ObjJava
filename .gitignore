@@ -7,3 +7,4 @@
 
 #ignore compilation files
 *.class
+vector_data.bin
